@@ -1,0 +1,13 @@
+<%- include("header") -%>
+
+<h1>Home</h1>
+<p> <%= content%> </p>
+
+<% posts.forEach(post => { %>
+    <h1> <%=post.email %> </h1>
+   
+      <a href="/posts/<%=post._id%> " target="_black">Load Pic</a>
+     </p>
+<% }); %>
+
+<%- include("footer") -%>

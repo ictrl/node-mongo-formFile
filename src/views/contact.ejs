@@ -1,0 +1,42 @@
+<!-- views/contact.ejs -->
+
+
+<div class="form-header">
+        <% if (Object.keys(errors).length === 0) { %>
+          <h2>Send us a message</h2>
+        <% } else { %>
+          <h2 class="errors-heading">Oops, please correct the following:</h2>
+          <ul class="errors-list">
+            <% Object.values(errors).forEach(error => { %>
+              <li><%= error.msg %></li>
+            <% }) %>
+          </ul>
+        <% } %>
+</div>
+
+<form method="post" action="/contact?_csrf=<%= csrfToken %>" novalidate enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div class="form-field <%= errors.message ? 'form-field-invalid' : '' %>">
+      <label for="message">Message</label>
+      <textarea class="input" id="message" name="message" rows="4" autofocus><%= data.message %></textarea>
+      <% if (errors.message) { %>
+        <div class="error"><%= errors.message.msg %></div>
+      <% } %>
+    </div>
+    <div class="form-field <%= errors.email ? 'form-field-invalid' : '' %>">
+      <label for="email">Email</label>
+      <input class="input" id="email" name="email" type="email" value="<%= data.email %>" />
+      <% if (errors.email) { %>
+        <div class="error"><%= errors.email.msg %></div>
+      <% } %>
+    </div>
+    <div class="form-field">
+            <label for="photo">Photo</label>
+            <input class="input" id="photo" name="photo" type="file" />
+    </div>
+    <div class="form-actions">
+      <button class="btn" type="submit">Send</button>
+    </div>
+  </form>
+
+  
