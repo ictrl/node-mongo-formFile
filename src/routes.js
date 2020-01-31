@@ -37,7 +37,7 @@ router.get("/", (req, res) => {
       content: homeStartingContent,
       posts: as
     });
-  });
+  }); 
 });
 
 // routes.js
